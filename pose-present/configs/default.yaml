@@ -1,0 +1,103 @@
+# You probably don't need to change these
+model_name_to_details:
+  lightning:
+    path: "models/movenet-tensorflow2-singlepose-lightning-v4"
+    input_size: 192
+  thunder:
+    path: "models/movenet-tensorflow2-singlepose-thunder-v4"
+    input_size: 256
+  lightning_web:
+    path: "https://tfhub.dev/google/movenet/singlepose/lightning/4"
+    input_size: 192
+  thunder_web:
+    path: "https://tfhub.dev/google/movenet/singlepose/thunder/4"
+    input_size: 256
+model_name: lightning_web
+keypoint_to_colour:
+  nose: [0, 100, 255]
+  left_eye: [0, 100, 255]
+  right_eye: [0, 0, 0]
+  left_ear: [0, 255, 255]
+  right_ear: [0, 100, 255]
+  left_shoulder: [0, 255, 255]
+  right_shoulder: [0, 100, 255]
+  left_elbow: [0, 255, 0]
+  right_elbow: [255, 200, 100]
+  left_wrist: [255, 0, 255]
+  right_wrist: [0, 255, 0]
+  left_hip: [255, 200, 100]
+  right_hip: [255, 0, 255]
+  left_knee: [0, 0, 255]
+  right_knee: [255, 0, 0]
+  left_ankle: [200, 200, 0]
+  right_ankle: [255, 0, 0]
+keypoint_pairs:
+  - [nose, left_eye]
+  - [nose, right_eye]
+  - [right_ear, right_eye]
+  - [left_ear, left_eye]
+  - [right_shoulder, left_shoulder]
+  - [nose, left_shoulder]
+  - [nose, right_shoulder]
+  - [right_elbow, right_shoulder]
+  - [left_elbow, left_shoulder]
+  - [left_elbow, left_wrist]
+  - [right_elbow, right_wrist]
+  - [right_shoulder, right_hip]
+  - [left_shoulder, left_hip]
+  - [right_hip, left_hip]
+  - [left_knee, left_hip]
+  - [right_knee, right_hip]
+  - [right_knee, right_ankle]
+  - [left_knee, left_ankle]
+stream_path: 0  # 0 is webcam
+threshold: 0.2  # threshold to accept a keypoint
+pose_to_action:
+  point: next
+  raise_elbow: previous
+  bow: special
+
+# You may need to change these. Leave:
+presentation_path: "<insert full path here>. Presentation should be able to advance forward with space"
+slide_number_start: 1
+video_viewer_application_cmd: [
+  "vlc.exe",
+  "-f",
+  "-L",
+  "--no-video-title",
+  "{video_path}",
+]
+presentation_viewer_application_cmd: [
+  "sumatrapdf.exe",
+  "-presentation",
+  "-page",
+  "{slide_number_start}",
+  "{presentation_path}",
+]
+slide_to_state:
+  3:
+    state: video
+    parameters:
+      video_path: "C:\\Users\\<username>\\Desktop\\<rest_of_path>"  # Note: use \\ on windows
+  5:
+    state: camera
+    parameters:
+      position: [100, 100]
+      dimensions: [100, 100]
+  7:
+    state: keypoints
+    parameters:
+      position: [100, 100]
+      dimensions: [480, 480]
+  9:
+    state: pose
+    parameters:
+      position: [100, 100]
+      dimensions: [480, 480]
+  11:
+    state: fast_presentation
+    parameters:
+      number_of_slides: 11
+      delay: 0.3
+num_slides: 70
+flip_image: false

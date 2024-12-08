@@ -1,0 +1,9 @@
+[tool.pyright]
+typeCheckingMode = "standard"
+# reportMissingTypeStubs = false
+# reportIgnoreCommentWithoutRule = false
+# reportMissingTypeArgument = false
+
+[tool.ruff]
+extend-select = ["I"]
+line-length = 80
