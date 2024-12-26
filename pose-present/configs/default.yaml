@@ -58,15 +58,8 @@ pose_to_action:
   bow: special
 
 # You may need to change these. Leave:
-presentation_path: "<insert full path here>. Presentation should be able to advance forward with space"
+presentation_path: "<insert full path here>. Presentation should be able to advance forward with the spacebar"
 slide_number_start: 1
-video_viewer_application_cmd: [
-  "vlc.exe",
-  "-f",
-  "-L",
-  "--no-video-title",
-  "{video_path}",
-]
 presentation_viewer_application_cmd: [
   "sumatrapdf.exe",
   "-presentation",
@@ -74,11 +67,14 @@ presentation_viewer_application_cmd: [
   "{slide_number_start}",
   "{presentation_path}",
 ]
+flip_image: false
+num_slides: 70
 slide_to_state:
   3:
-    state: video
+    state: application
     parameters:
-      video_path: "C:\\Users\\<username>\\Desktop\\<rest_of_path>"  # Note: use \\ on windows
+      application_cmd: ["vlc.exe", "-f", "-L", "--no-video-title", "{video_path}",]
+      video_path: "C:\\Users\\user\\Desktop\\video name.mp4"  # Note: use \\ on windows
   5:
     state: camera
     parameters:
@@ -97,7 +93,5 @@ slide_to_state:
   11:
     state: fast_presentation
     parameters:
-      number_of_slides: 11
+      number_of_slides: 5
       delay: 0.3
-num_slides: 70
-flip_image: false

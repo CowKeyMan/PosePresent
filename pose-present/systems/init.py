@@ -3,7 +3,7 @@ from presentation_master.presentation_master import PresentationMaster
 from state.camera_state import CameraState
 from state.presentation_state import PresentationState
 from state.state import State
-from state.video_state import VideoState
+from state.application_state import ApplicationState
 from stream.skip_frames_live_stream import SkipFramesLiveStream
 from utils.poses import Pose, bow, point, raise_elbow
 from state.keypoints_state import KeypointsState
@@ -45,7 +45,6 @@ def init_states(
     slide_number_start: int,
     num_slides: int,
     slide_to_state: dict[int, dict[str, dict | str]],
-    video_viewer_application_cmd: list[str],
     keypoint_to_colour: dict[str, tuple[int, int, int]],
     keypoint_pairs: list[tuple[str, str]]
 ):
@@ -57,7 +56,7 @@ def init_states(
             slide_to_state,
             slide_number_start,
         ),
-        "video": VideoState(video_viewer_application_cmd),
+        "application": ApplicationState(),
         "camera": CameraState(),
         "keypoints": KeypointsState(keypoint_to_colour),
         "pose": PoseState(keypoint_to_colour, keypoint_pairs),

@@ -1,14 +1,20 @@
-from pcs.init import initialize_object_nones
-from pcs.argument_parser import parse_arguments
+import logging
+import os
 from dataclasses import dataclass
-from pcs.pipeline import Pipeline
+
+import numpy as np
 from model.model import Model
+from pcs.argument_parser import parse_arguments
+from pcs.init import initialize_object_nones
+from pcs.pipeline import Pipeline
+from presentation_master.presentation_master import PresentationMaster
+from stream.stream import Stream
 from systems.init import (
     init_model,
-    init_stream,
     init_poses,
-    init_states,
     init_presentation_master,
+    init_states,
+    init_stream,
 )
 from systems.run import (
     get_next_frame,
@@ -16,12 +22,7 @@ from systems.run import (
     update_presentation,
     # show_keypoints_image,
 )
-from stream.stream import Stream
 from utils.poses import Pose
-from presentation_master.presentation_master import PresentationMaster
-import numpy as np
-import logging
-import os
 
 LOGLEVEL = os.environ.get("LOGLEVEL", "INFO").upper()
 logging.basicConfig(level=LOGLEVEL, format="%(asctime)s %(message)s")
@@ -40,8 +41,9 @@ class Data:
     pose_to_action: dict[str, str]
     slide_to_state: dict[int, dict[str, dict | str]]
     keypoint_to_colour: dict[str, tuple[int, int, int]]
-    flip_image: bool
-    video_viewer_application_cmd: list[str]
+    flip_image: (
+        bool  # Set to true if you want to switch your left and right hand
+    )
     presentation_viewer_application_cmd: list[str]
     keypoint_pairs: list[tuple[str, str]]
     # dynamic:
