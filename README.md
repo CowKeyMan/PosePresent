@@ -1,8 +1,12 @@
 # Pose Present
 
+![Pose Present](https://github.com/user-attachments/assets/da37b54e-377a-4695-bfd2-7538b128a247)
+
 A cool way of giving presentations
 
-Tutorial and demonstration animation here: [![tutorial](https://img.youtube.com/vi/-vk7Q0_DYds/0.jpg)](https://www.youtube.com/watch?v=-vk7Q0_DYds)
+Tutorial and demonstration animation here:
+
+[![tutorial](https://img.youtube.com/vi/-vk7Q0_DYds/0.jpg)](https://www.youtube.com/watch?v=-vk7Q0_DYds)
 
 Install requirements with `pip install -r requirements.txt`
 
